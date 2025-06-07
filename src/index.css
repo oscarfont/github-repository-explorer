@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Poppins'; 
+  src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro'; 
+  src: url('./assets/fonts/Source Sans Pro/SourceSansPro-Regular.otf');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway'; 
+  src: url('./assets/fonts/Raleway/static/Raleway-Regular.ttf');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+:root {
+    /* Color theme */
+    --main-background: #f6f5f4;
+    --primary: #1c71d8;
+    --accent: #485a6c;
+
+    /* Font faces */
+    --titles-family: "Poppins";
+    --subtitles-family: "Source Sans Pro";
+    --body-family: "Raleway"
+
+    /* Type scale: 1.250 Major Third */
+    --fs-0: 12.8px;
+    --fs-1: 16px;
+    --fs-2: 20px;
+    --fs-3: 25px;
+    --fs-4: 31.25px;
+    --fs-5: 39px;
+    --fs-6: 49px;
+    --fs-7: 61px;
+}
+
+body {
+    margin: unset;
+}
+
+.navbar {
+    font-family: var(--titles-family);
+    font-size: var(--fs-4);
+    background-color: var(--main-background);
+    display: flex;
+    gap: 1rem;
+    padding: 0.25rem 0.25rem 0.25rem 2rem;
+    border: 0.15rem solid var(--accent);
+}
+
+.main-title {
+    color: var(--primary);
+    font-weight: bold;
+}
