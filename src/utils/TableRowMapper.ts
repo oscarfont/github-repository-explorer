@@ -1,8 +1,8 @@
 import type { TableRow } from "../components/ResultsTable";
-import type { RepositoriesSearchResponse } from "./github-sample-responses";
+import type { RepositoriesSearchResponse, RepositoryResponse } from "../infrastructure/github-sample-responses.ts";
 
 export function mapToTableRow(data: RepositoriesSearchResponse): TableRow[] {
-    return data.items.map((res) => {
+    return data.items.map((res: RepositoryResponse) => {
         return {
             owner: {
                 username: res.owner.login,
