@@ -1,5 +1,5 @@
 import { GithubOutlined } from '@ant-design/icons'
-import { ResultsTable, type TableRow } from '../components/ResultsTable';
+import { ResultsTable, type TableRow, type TableRowPaginated } from '../components/ResultsTable';
 import { GithubApiRepository } from '../infrastructure/GithubApiRepository';
 import { useEffect, useState } from 'react';
 
@@ -7,7 +7,7 @@ const token = import.meta.env.VITE_GITHUB_TOKEN;
 const repository = new GithubApiRepository(token);
 
 export function Dashboard() {
-    const [githubApiResponse, setGithubApiResponse] = useState<TableRow[]>([]);
+    const [githubApiResponse, setGithubApiResponse] = useState<TableRowPaginated>({ rows: [], resultsCount:0 });
     useEffect(() => {
         repository.search("is:public", 10).then((response) => { setGithubApiResponse(response); });
     }, []);
@@ -17,7 +17,7 @@ export function Dashboard() {
             <p className="main-title">Github Project Explorer</p>
         </header>
         <section className="results-section">
-            <ResultsTable dataSource={githubApiResponse} totalCount={40}/>
+            <ResultsTable dataSource={githubApiResponse?.rows} totalCount={githubApiResponse?.resultsCount}/>
         </section>
     </>;
 }

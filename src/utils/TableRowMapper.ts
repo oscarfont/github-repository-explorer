@@ -1,8 +1,8 @@
-import type { TableRow } from "../components/ResultsTable";
-import type { RepositoriesSearchResponse, RepositoryResponse } from "../infrastructure/github-sample-responses.ts";
+import type { TableRow, TableRowPaginated } from "../components/ResultsTable";
+import type { RepositoryResponse } from "../infrastructure/github-sample-responses.ts";
 
-export function mapToTableRow(data: RepositoriesSearchResponse): TableRow[] {
-    return data.items.map((res: RepositoryResponse) => {
+export function mapToTableRow(data: RepositoryResponse[]): TableRow[] {
+    return data.map((res: RepositoryResponse) => {
         return {
             owner: {
                 username: res.owner.login,
@@ -19,4 +19,11 @@ export function mapToTableRow(data: RepositoriesSearchResponse): TableRow[] {
             created_at: res.created_at
         }
     });
+}
+
+export function buildTableRowsPaginated(data: TableRow[], resultsCount: number): TableRowPaginated {
+    return {
+        rows: data,
+        resultsCount: resultsCount
+    }
 }

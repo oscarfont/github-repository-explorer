@@ -46,6 +46,11 @@ const columns: ColumnsType<TableRow> = [
   }
 ];
 
+export interface TableRowPaginated {
+  rows: TableRow[],
+  resultsCount: number
+}
+
 export interface TableRow {
   owner: OwnerUser,
   name: string,
@@ -69,8 +74,7 @@ export function ResultsTable({ dataSource, totalCount }: {dataSource: TableRow[]
         <Table 
           dataSource={dataSource}
           columns={columns}
-          pagination={{hideOnSinglePage: true, position: ['bottomLeft']}} 
+          pagination={{ hideOnSinglePage: true, position: ['bottomCenter'], total: totalCount, showSizeChanger: false}} 
         />
-        <p className="results-count">Results: {totalCount}</p>
     </>;
 }
