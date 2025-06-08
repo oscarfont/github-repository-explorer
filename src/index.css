@@ -28,7 +28,7 @@
     /* Font faces */
     --titles-family: "Poppins";
     --subtitles-family: "Source Sans Pro";
-    --body-family: "Raleway"
+    --body-family: "Raleway";
 
     /* Type scale: 1.250 Major Third */
     --fs-0: 12.8px;
@@ -43,6 +43,7 @@
 
 body {
     margin: unset;
+    background-color: var(--main-background);
 }
 
 .navbar {
@@ -58,4 +59,10 @@ body {
 .main-title {
     color: var(--primary);
     font-weight: bold;
+}
+
+.results-section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 1rem 2rem;
 }

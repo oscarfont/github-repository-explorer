@@ -1,0 +1,25 @@
+div.ant-table-container {
+    border: 0.1rem solid var(--accent) !important;
+    border-radius: 0 !important;
+}
+
+.ant-table-thead {
+    font-family: var(--subtitles-family);
+    font-size: var(--fs-2);
+}
+
+.ant-table-thead > tr > th {
+    color: var(--primary) !important;
+    background-color: var(--main-background) !important;
+    border-bottom: 0.1rem solid var(--accent) !important;
+}
+
+.ant-table-tbody > tr > td {
+    background-color: var(--main-background) !important;
+    font-family: var(--body-family) !important;
+    font-size: var(--fs-1);
+}
+
+.results-count {
+    font-family: var(--body-family) !important;
+}
