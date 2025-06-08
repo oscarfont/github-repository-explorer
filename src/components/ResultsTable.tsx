@@ -1,6 +1,7 @@
 import { Table } from 'antd';
 import type { ColumnsType } from "antd/es/table";
 import './ResultsTable.css';
+import { useState } from 'react';
 
 const columns: ColumnsType<TableRow> = [
   {
@@ -48,7 +49,9 @@ const columns: ColumnsType<TableRow> = [
 
 export interface TableRowPaginated {
   rows: TableRow[],
-  resultsCount: number
+  resultsCount: number,
+  next: string | null,
+  previous: string | null
 }
 
 export interface TableRow {
@@ -69,12 +72,12 @@ interface OwnerUser {
   url: string
 }
 
-export function ResultsTable({ dataSource, totalCount }: {dataSource: TableRow[], totalCount: number}) {
-    return <>
-        <Table 
-          dataSource={dataSource}
-          columns={columns}
-          pagination={{ hideOnSinglePage: true, position: ['bottomCenter'], total: totalCount, showSizeChanger: false}} 
-        />
-    </>;
+export function ResultsTable({ rows }: {rows: TableRow[]}) {
+  return <>
+    <Table 
+      dataSource={rows}
+      columns={columns}
+      pagination={false}
+    />
+  </>;
 }

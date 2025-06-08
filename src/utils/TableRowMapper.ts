@@ -21,9 +21,11 @@ export function mapToTableRow(data: RepositoryResponse[]): TableRow[] {
     });
 }
 
-export function buildTableRowsPaginated(data: TableRow[], resultsCount: number): TableRowPaginated {
+export function buildTableRowsPaginated(data: TableRow[], resultsCount: number, next: string | null, previous: string | null): TableRowPaginated {
     return {
         rows: data,
-        resultsCount: resultsCount
+        resultsCount: resultsCount,
+        next: next,
+        previous: previous
     }
 }
