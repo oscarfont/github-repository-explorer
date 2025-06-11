@@ -4,6 +4,6 @@ import { repositorySearchSampleResponse } from "./github-sample-responses";
 
 export class InMemoryGithubRepository {
     search(): TableRow[] {
-        return mapToTableRow(repositorySearchSampleResponse);
+        return mapToTableRow(repositorySearchSampleResponse.items);
     }
 }

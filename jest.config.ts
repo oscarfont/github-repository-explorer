@@ -28,12 +28,13 @@ const config: Config = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "__test__/mocks/*"
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  // coverageProvider: "babel",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -92,7 +93,13 @@ const config: Config = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|pdf)$': `${__dirname}/__test__/mocks/fileMock.js`,
+
+    // `identity-obj-proxy` enables the import of CSS Modules and enables class
+    // names to appear on the DOM nodes in JSDom.
+    '\\.(css|scss)$': 'identity-obj-proxy',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -139,7 +146,7 @@ const config: Config = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/__test__/setup.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -148,7 +155,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jsdom",
+  testEnvironment: "jest-environment-jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -177,7 +184,38 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        sourceMaps: true,
+        jsc: {
+          experimental: {
+            plugins: [
+              // swc_mut_cjs_exports is used to make CJS exports mutable. This
+              // is needed to make `jest.spyOn` work, since it depends on them
+              // being mutable. Jest's behaviour is _not_ correct, so the @swc
+              // team don't support it, hence the plugin.
+              ['swc_mut_cjs_exports', {}],
+            ],
+          },
+          target: 'es2023',
+          transform: {
+            // Without this, all tests will need to import React into the test
+            // file. This enables us to write JSX directly in the test files but
+            // not need to explicitly import React.
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
+        module: {
+          type: 'commonjs',
+        },
+      }
+    ]
+    
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -196,6 +234,7 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  extensionsToTreatAsEsm: ['.ts', '.tsx']
 };
 
 export default config;

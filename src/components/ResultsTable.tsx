@@ -1,7 +1,6 @@
 import { Table } from 'antd';
 import type { ColumnsType } from "antd/es/table";
 import './ResultsTable.css';
-import { useState } from 'react';
 
 const columns: ColumnsType<TableRow> = [
   {
