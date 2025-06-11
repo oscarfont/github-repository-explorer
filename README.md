@@ -2,12 +2,14 @@
 
 A modern, fast development template with batteries included! 🚀
 
+Powered by **SWC** for lightning-fast builds and testing ⚡
+
 ## Tech Stack
 
 - ⚛️ React 19
 - 📜 TypeScript
-- ⚡ Vite
-- 🧪 Jest for Testing
+- ⚡ Vite with SWC
+- 🧪 Jest with SWC for Testing
 - 📦 pnpm for Package Management
 - 🟢 Node.js 20 (LTS Iron)
 
@@ -16,6 +18,7 @@ A modern, fast development template with batteries included! 🚀
 - Hot Module Replacement (HMR)
 - TypeScript strict mode enabled
 - ESLint configuration ready
+- **Ultra-fast builds and tests with SWC compilation**
 - Unit testing setup with Jest and jsdom
 - Comprehensive TypeScript configuration
 - Fast builds with pnpm
@@ -67,13 +70,12 @@ export default tseslint.config({
 
 ## Additional Tools
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) - Uses Babel for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) - Uses SWC for Fast Refresh
-
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) - Uses SWC for Fast Refresh and compilation
+- [@swc/jest](https://github.com/swc-project/pkgs/tree/main/packages/jest) - Ultra-fast test execution with SWC transpilation
 
 ## Use the template
 ```
-mkdir your-new-shining-project
+mkdir your-new-shining-project && cd your-new-shining-project
 
-pnpm degit https://github.com/oscarfont/vite-react-ts-template.git
+pnpm dlx degit https://github.com/oscarfont/vite-react-ts-template.git
 ```

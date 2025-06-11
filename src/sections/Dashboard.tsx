@@ -4,10 +4,10 @@ import { GithubApiRepository } from '../infrastructure/GithubApiRepository';
 import { useEffect, useState } from 'react';
 import { Pagination, type PaginationProps } from 'antd';
 
-const token = import.meta.env.VITE_GITHUB_TOKEN;
-const repository = new GithubApiRepository(token);
-
 export function Dashboard() {
+    const token = process.env.VITE_GITHUB_TOKEN;
+    const repository = new GithubApiRepository(token);
+
     const [githubApiResponse, setGithubApiResponse] = useState<TableRowPaginated>({ rows: [], resultsCount:0, next: null, previous: null });
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [prevPage, setPrevPage] = useState<number | null>(null);
